@@ -1,6 +1,7 @@
 package com.zisco;
 
 import com.zisco.proxys.CommonProxy;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -19,6 +20,8 @@ public class Zisco
 
     @SidedProxy(clientSide = "com.zisco.proxys.ClientProxy", serverSide = "com.zisco.proxys.ServerProxy")
     public static CommonProxy proxy;
+
+    public static final CreativeTabs CREATIVE_TABS = new ZiscoTab("Zisco");
 
     @Mod.Instance
     public static Zisco instance;
