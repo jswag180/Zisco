@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "zisco:pcbtrace"
+  },
+  "pattern": [
+    "rrr",
+    "iii",
+    "rrr"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    }
+  }
+}

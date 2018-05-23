@@ -13,6 +13,7 @@ public class PCBTrace extends Item {
 
         setRegistryName("pcbtrace");        // The unique name (within your mod) that identifies this item
         setUnlocalizedName(Zisco.MODID + ".pcbtrace");     // Used for localization (en_US.lang)
+        setCreativeTab(Zisco.CREATIVE_TABS);
 
     }
 
