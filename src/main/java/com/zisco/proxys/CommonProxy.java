@@ -1,10 +1,10 @@
 package com.zisco.proxys;
 
-import com.zisco.Blocks.CoalEngine.CoalEngine;
+import com.zisco.Blocks.CoalEngine.CoalEngineBlock;
 import com.zisco.Blocks.ModBlocks;
 import com.zisco.Blocks.PCBFactory.PCBFactory;
 import com.zisco.Blocks.CoalEngine.CoalEngineTileEntitiy;
-import PCBFactoryTileEntity;
+import com.zisco.Blocks.PCBFactory.PCBFactoryTileEntity;
 import com.zisco.Items.PCBTrace;
 import com.zisco.Zisco;
 import net.minecraft.block.Block;
@@ -16,7 +16,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import static com.zisco.Zisco.instance;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
@@ -25,6 +28,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent e) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
     }
 
     public void postInit(FMLPostInitializationEvent e) {
@@ -36,7 +40,7 @@ public class CommonProxy {
         event.getRegistry().register(new PCBFactory());
         GameRegistry.registerTileEntity(PCBFactoryTileEntity.class, Zisco.MODID + "_pcbfactory");
 
-        event.getRegistry().register(new CoalEngine());
+        event.getRegistry().register(new CoalEngineBlock());
         GameRegistry.registerTileEntity(CoalEngineTileEntitiy.class, Zisco.MODID + "_coalengine");
 
     }
@@ -46,10 +50,9 @@ public class CommonProxy {
 
         event.getRegistry().register(new ItemBlock(ModBlocks.pcbfactory).setRegistryName(ModBlocks.pcbfactory.getRegistryName()));
 
-        event.getRegistry().register(new ItemBlock(ModBlocks.coalengine).setRegistryName(ModBlocks.coalengine.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.coalengineblock).setRegistryName(ModBlocks.coalengineblock.getRegistryName()));
 
         event.getRegistry().register(new PCBTrace());
-
     }
 
 }
