@@ -1,5 +1,6 @@
 item.zisco.pcbtrace.name=PCB Trace
 
 tile.zisco.pcbfactory.name=PCB Factory
+tile.zisco.coalengine.name=Coal Engine
 
 itemGroup.Zisco=Zisco
