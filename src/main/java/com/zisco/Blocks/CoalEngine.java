@@ -1,6 +1,6 @@
 package com.zisco.Blocks;
 
-import com.zisco.Blocks.TileEntitys.CoalEngineTileEntity;
+import com.zisco.Blocks.TileEntitys.CoalEngineTileEntitiy;
 import com.zisco.Zisco;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -48,7 +48,7 @@ public class CoalEngine extends Block implements ITileEntityProvider {
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new CoalEngineTileEntity();
+        return new CoalEngineTileEntitiy();
     }
 
     @Override

@@ -37,7 +37,7 @@ public class PCBFactory extends Block implements ITileEntityProvider {
         setRegistryName("pcbfactory");
         setCreativeTab(Zisco.CREATIVE_TABS);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-
+        // to change block state worldIn.setBlockState(pos, state.withProperty(ENABLED, true), 3);
     }
 
     @SideOnly(Side.CLIENT)
@@ -49,14 +49,6 @@ public class PCBFactory extends Block implements ITileEntityProvider {
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new PCBFactoryTileEntity();
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
-            worldIn.setBlockState(pos, state.withProperty(ENABLED, true), 3);
-
-        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
     @Override
@@ -87,4 +79,5 @@ public class PCBFactory extends Block implements ITileEntityProvider {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this,FACING,ENABLED);
     }
+
 }

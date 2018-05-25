@@ -1,6 +1,8 @@
 package com.zisco.Blocks.TileEntitys;
 
-public class CoalEngineTileEntitiy {
+import net.minecraft.tileentity.TileEntity;
+
+public class CoalEngineTileEntitiy extends TileEntity {
 
 
 

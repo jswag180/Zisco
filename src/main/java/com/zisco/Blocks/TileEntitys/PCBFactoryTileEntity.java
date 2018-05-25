@@ -6,6 +6,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 public class PCBFactoryTileEntity extends TileEntity implements IEnergyStorage {
 
 
+
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         return 0;
