@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "zisco:blocks/pcbfactory/pcbfactory_def",
+    "down": "zisco:blocks/pcbfactory/pcbfactory_def",
+    "up": "zisco:blocks/pcbfactory/pcbfactory_top",
+    "east": "zisco:blocks/pcbfactory/pcbfactory_def",
+    "west": "zisco:blocks/pcbfactory/pcbfactory_def",
+    "north": "#front",
+    "south": "zisco:blocks/pcbfactory/pcbfactory_def"
+  }
+}

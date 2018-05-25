@@ -1,6 +1,7 @@
 package com.zisco.proxys;
 
 
+import com.zisco.Blocks.ModBlocks;
 import com.zisco.Items.ModItems;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,6 +21,7 @@ public class ClientProxy extends CommonProxy {
     public static void registerModels(ModelRegistryEvent event) {
 
         ModItems.initModels();
+        ModBlocks.initModels();
 
     }
 

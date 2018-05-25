@@ -2,7 +2,9 @@ package com.zisco.proxys;
 
 import com.zisco.Blocks.ModBlocks;
 import com.zisco.Blocks.PCBFactory;
+import com.zisco.Blocks.TileEntitys.PCBFactoryTileEntity;
 import com.zisco.Items.PCBTrace;
+import com.zisco.Zisco;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -12,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
@@ -29,6 +32,7 @@ public class CommonProxy {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
 
         event.getRegistry().register(new PCBFactory());
+        GameRegistry.registerTileEntity(PCBFactoryTileEntity.class, Zisco.MODID + "_pcbfactory");
 
     }
 
