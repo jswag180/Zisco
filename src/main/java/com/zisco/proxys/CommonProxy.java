@@ -1,8 +1,10 @@
 package com.zisco.proxys;
 
+import com.zisco.Blocks.CoalEngine.CoalEngine;
 import com.zisco.Blocks.ModBlocks;
-import com.zisco.Blocks.PCBFactory;
-import com.zisco.Blocks.TileEntitys.PCBFactoryTileEntity;
+import com.zisco.Blocks.PCBFactory.PCBFactory;
+import com.zisco.Blocks.CoalEngine.CoalEngineTileEntitiy;
+import PCBFactoryTileEntity;
 import com.zisco.Items.PCBTrace;
 import com.zisco.Zisco;
 import net.minecraft.block.Block;
@@ -34,12 +36,17 @@ public class CommonProxy {
         event.getRegistry().register(new PCBFactory());
         GameRegistry.registerTileEntity(PCBFactoryTileEntity.class, Zisco.MODID + "_pcbfactory");
 
+        event.getRegistry().register(new CoalEngine());
+        GameRegistry.registerTileEntity(CoalEngineTileEntitiy.class, Zisco.MODID + "_coalengine");
+
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
 
         event.getRegistry().register(new ItemBlock(ModBlocks.pcbfactory).setRegistryName(ModBlocks.pcbfactory.getRegistryName()));
+
+        event.getRegistry().register(new ItemBlock(ModBlocks.coalengine).setRegistryName(ModBlocks.coalengine.getRegistryName()));
 
         event.getRegistry().register(new PCBTrace());
 

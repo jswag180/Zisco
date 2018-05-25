@@ -1,4 +1,4 @@
-package com.zisco.Blocks.TileEntitys;
+package com.zisco.Blocks.PCBFactory;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.energy.IEnergyStorage;

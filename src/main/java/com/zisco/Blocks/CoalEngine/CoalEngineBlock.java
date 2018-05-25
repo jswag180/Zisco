@@ -1,6 +1,5 @@
-package com.zisco.Blocks;
+package com.zisco.Blocks.CoalEngine;
 
-import com.zisco.Blocks.TileEntitys.PCBFactoryTileEntity;
 import com.zisco.Zisco;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -25,19 +24,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class PCBFactory extends Block implements ITileEntityProvider {
+public class CoalEngineBlock extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool ENABLED = PropertyBool.create("enabled");
+    public static final int GUI_ID = 1;
 
-    public PCBFactory() {
+    public CoalEngineBlock() {
         super(Material.ROCK);
 
-        setUnlocalizedName(Zisco.MODID + ".pcbfactory");     // Used for localization (en_US.lang)
-        setRegistryName("pcbfactory");
+        setUnlocalizedName(Zisco.MODID + ".coalengine");     // Used for localization (en_US.lang)
+        setRegistryName("coalengine");
         setCreativeTab(Zisco.CREATIVE_TABS);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        // to change block state worldIn.setBlockState(pos, state.withProperty(ENABLED, true), 3);
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -48,7 +48,26 @@ public class PCBFactory extends Block implements ITileEntityProvider {
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new PCBFactoryTileEntity();
+        return new CoalEngineTileEntitiy();
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+        //worldIn.setBlockState(pos, state.withProperty(ENABLED, true), 3);
+
+        //return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+
+        if (worldIn.isRemote) {
+            return true;
+        }
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (!(te instanceof CoalEngineTileEntitiy)){
+            return false;
+        }
+        playerIn.openGui(Zisco.instance, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return true;
+
     }
 
     @Override
@@ -63,7 +82,7 @@ public class PCBFactory extends Block implements ITileEntityProvider {
                 (float) (entity.posZ - clickedBlock.getZ()));
     }
 
-        @Override
+    @Override
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState()
                 .withProperty(FACING, EnumFacing.getFront(meta & 7))
@@ -79,5 +98,4 @@ public class PCBFactory extends Block implements ITileEntityProvider {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this,FACING,ENABLED);
     }
-
 }
