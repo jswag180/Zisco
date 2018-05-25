@@ -16,7 +16,7 @@ public class GuiProxy implements IGuiHandler {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity te = world.getTileEntity(pos);
         if (te instanceof CoalEngineTileEntitiy) {
-            return new CoalEngine(player.inventory, null, (CoalEngineTileEntitiy) te);
+            return new CoalEngine(player.inventory, (CoalEngineTileEntitiy) te);
         }
         return null;
     }
@@ -27,7 +27,7 @@ public class GuiProxy implements IGuiHandler {
         TileEntity te = world.getTileEntity(pos);
         if (te instanceof CoalEngineTileEntitiy) {
             CoalEngineTileEntitiy containerTileEntity = (CoalEngineTileEntitiy) te;
-            return new CoalEngineGui(containerTileEntity, new CoalEngine(player.inventory, null, containerTileEntity));
+            return new CoalEngineGui(containerTileEntity, new CoalEngine(player.inventory, containerTileEntity));
         }
         return null;
     }

@@ -4,30 +4,49 @@ import jline.internal.Nullable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class CoalEngine extends Container {
 
     private CoalEngineTileEntitiy te;
-    private final IInventory tileFurnace;
 
-    public CoalEngine(IInventory playerInventory, IInventory furnaceInventory, CoalEngineTileEntitiy te)
-    {
+    public CoalEngine(IInventory playerInventory, CoalEngineTileEntitiy te) {
         this.te = te;
-        this.tileFurnace = furnaceInventory;
-        this.addSlotToContainer(new Slot(furnaceInventory, 0, 56, 17));
-        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, 1, 56, 53));
 
-        for (int i = 0; i < 3; ++i)
-        {
-            for (int j = 0; j < 9; ++j)
-            {
-                this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        addOwnSlots();
+        addPlayerSlots(playerInventory);
+    }
+
+    private void addPlayerSlots(IInventory playerInventory) {
+        // Slots for the main inventory
+        for (int row = 0; row < 3; ++row) {
+            for (int col = 0; col < 9; ++col) {
+                int x = 8 + col * 18;
+                int y = row * 18 + 84;
+                this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 10, x, y));
             }
         }
 
-        for (int k = 0; k < 9; ++k)
-        {
-            this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
+        for (int row = 0; row < 9; ++row) {
+            int x = 8 + row * 18;
+            int y = 142;
+            this.addSlotToContainer(new Slot(playerInventory, row, x, y));
+        }
+    }
+
+    private void addOwnSlots() {
+        IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        int x = 8 + (4*18);
+        int y = 25;
+
+        // Add our own slots
+        int slotIndex = 0;
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
+            slotIndex++;
+            x += 18;
         }
     }
 
@@ -57,12 +76,10 @@ public class CoalEngine extends Container {
         }
 
         return itemstack;
-
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return te.canInteractWith(playerIn);
     }
-
 }
