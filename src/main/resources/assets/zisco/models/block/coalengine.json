@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "zisco:blocks/coalengine/coalengine_def",
+    "down": "zisco:blocks/coalengine/coalengine_def",
+    "up": "zisco:blocks/coalengine/coalengine_def",
+    "east": "zisco:blocks/coalengine/coalengine_def",
+    "west": "zisco:blocks/coalengine/coalengine_def",
+    "north": "#front",
+    "south": "zisco:blocks/coalengine/coalengine_def"
+  }
+}
