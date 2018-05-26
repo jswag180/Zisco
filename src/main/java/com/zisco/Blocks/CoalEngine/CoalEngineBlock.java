@@ -11,6 +11,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -67,6 +69,13 @@ public class CoalEngineBlock extends Block implements ITileEntityProvider {
         playerIn.openGui(Zisco.instance, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
 
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState blockstate) {
+        CoalEngineTileEntitiy te = (CoalEngineTileEntitiy) world.getTileEntity(pos);
+        InventoryHelper.spawnItemStack(world,pos.getX(),pos.getY(),pos.getZ(),te.itemStackHandler.getStackInSlot(0));
+        super.breakBlock(world, pos, blockstate);
     }
 
     @Override

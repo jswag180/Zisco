@@ -1,6 +1,7 @@
 package com.zisco.Blocks.CoalEngine;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -8,12 +9,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class CoalEngineTileEntitiy extends TileEntity  {
+public class CoalEngineTileEntitiy extends TileEntity {
 
     public static final int SIZE = 1;
 
 
-    private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
+    public ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
         @Override
         protected void onContentsChanged(int slot) {
             CoalEngineTileEntitiy.this.markDirty();
@@ -23,7 +24,7 @@ public class CoalEngineTileEntitiy extends TileEntity  {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        if (compound.hasKey("Items")) {
+        if (compound.hasKey("items")) {
             itemStackHandler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
         }
     }

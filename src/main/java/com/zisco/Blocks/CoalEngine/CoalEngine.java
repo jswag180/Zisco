@@ -44,7 +44,7 @@ public class CoalEngine extends Container {
         // Add our own slots
         int slotIndex = 0;
         for (int i = 0; i < itemHandler.getSlots(); i++) {
-            addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
+            addSlotToContainer(new CoalSlot(itemHandler, slotIndex, x, y));//SlotItemHandler
             slotIndex++;
             x += 18;
         }
